@@ -267,20 +267,25 @@ Scheduler __scheduler;
 
 // Create custom tasks
 Clock _clock;
-Blinker _blinker(13, 100);
-ServoTask _servo(10, 5000);
+Blinker _blinker12(12, 1000);
+Blinker _blinker13(13, 50);
+ServoTask _servo10(10, 500);
+ServoTask _servo11(11, 3000);
 
 void setup()
 { 
   _clock.setup();
-  _servo.setup();
-  _blinker.setup();  
-  
-  
+  _servo10.setup();
+  _servo11.setup();
+  _blinker12.setup();  
+  _blinker13.setup();  
+    
   __scheduler.setup();
   __scheduler.queue(&_clock);
-  __scheduler.queue(&_blinker);
-  __scheduler.schedule(&_servo, 1000);
+  __scheduler.queue(&_blinker12);
+  __scheduler.queue(&_blinker13);
+  __scheduler.schedule(&_servo10, 1000);
+  __scheduler.schedule(&_servo11, 2000);
 }
 
 void loop()
